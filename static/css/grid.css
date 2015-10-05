@@ -1,0 +1,31 @@
+	.grid {
+		padding: 10px 30px 30px 10px;
+		margin: 0 auto;
+		list-style: none;
+		text-align: center;
+		height:600px;
+        overflow:auto;
+		}
+		
+	.grid li	{
+		display: inline-block;
+		width: 255px;
+		margin: 0;
+		padding: 20px;
+		position: relative;
+        }
+	.grid2 {
+		padding: 20px 20px 20px 20px;
+		max-width: 1300px;
+		margin: 0 auto;
+		list-style: none;
+		text-align: center;
+		}
+		
+	.grid2 li	{
+		display: inline-block;
+		width: 350px;
+		margin: 0;
+		padding: 20px;
+		position: relative;
+        }

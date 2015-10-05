@@ -1,0 +1,45 @@
+	.grid1 {
+		padding: 20px 20px 20px 20px;
+		max-width: 1300px;
+		margin: 0 auto;
+		list-style: none;
+		text-align: center;
+		}
+		
+	.grid1 li	{
+		display: inline-block;
+		width: 255px;
+		margin: 0;
+		padding: 20px;
+		position: relative;
+        }
+        
+	.grid2 {
+		padding: 20px 20px 20px 20px;
+		max-width: 1300px;
+		margin: 0 auto;
+		list-style: none;
+		text-align: center;
+        overflow:auto;
+		height:600px;
+		}
+		
+	.grid2 li	{
+		display: inline-block;
+		margin: 0;
+		padding: 20px;
+		position: relative;
+        }
+
+	.top_nav {
+		line-height: 1.25;
+		font-size: 18px;
+		padding-top: 30px;
+		}
+
+	.footer {
+		text-align: right;
+		line-height: 1.25;
+		font-style: italic;
+		padding-right: 30px;
+		}
