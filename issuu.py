@@ -12,7 +12,8 @@ from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
-version = '0.7.116 r1'
+
+version = '0.7.118'
 
 app = Flask(__name__)
 
@@ -27,7 +28,10 @@ pageSize = 100
 resultOrder = 'desc'
 startIndex = 0
 
+
 embeds = {
+'118': {'documentId': '151124171950-52c2045bc2dc4256bb70e98fd20cfc2e', 'title': 'California Style', 'description': 'Winter 2015', 'dataconfigId': '6936490/31563451'},
+'117': {'documentId': '151005164511-d85869529cad4433a5caf69ebb5db9df', 'title': 'California Style', 'description': 'November 2015', 'dataconfigId': '6936490/30956711'},
 '116': {'documentId': '151005164511-16a4c7a2e7b34a2d92ccec4926237c67', 'title': 'C for Men', 'description': 'Fall 2015', 'dataconfigId': '6936490/30507842'},
 '115': {'documentId': '150923064257-28d21bcbe4234551b1181c84a39f9617', 'title': 'C California Style', 'description': 'October 2015', 'dataconfigId': '6936490/30238976'},
 '114': {'documentId': '150824071940-10eaa5ec1a8a4a95a891adc4b0897f1d', 'title': 'C Home', 'description': 'Fall 2015', 'dataconfigId': '6936490/14964408'},
