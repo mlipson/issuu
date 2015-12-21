@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block footer %}
-    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2015 C Publishing LLC
+    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2016 C Publishing LLC
 {% endblock %}
 
 {% block script %}
