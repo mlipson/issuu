@@ -29,6 +29,8 @@ startIndex = 0
 
 
 embeds = {
+'128': {'documentId': '160815143423-b1bd9322877c4d4081825356d54d453d', 'title': 'C Home', 'description': 'Fall 2016', 'dataconfigId': '6936490/37905125'},
+'127': {'documentId': '160815143216-c18b9ab79eda4388aea2f5628b75a80b', 'title': 'California Style', 'description': 'September 2016', 'dataconfigId': '6936490/37905103'},
 '126': {'documentId': '160627144507-e853c9b3dd3142a6a56cfbb4d3756e23', 'title': 'C Weddings', 'description': 'Fall 2016', 'dataconfigId': '6936490/36809004'},
 '125': {'documentId': '160530211658-a7a10c26687f4247bfc5e6bdb393fb49', 'title': 'California Style', 'description': 'Summer 2016', 'dataconfigId': '6936490/36083234'},
 '124': {'documentId': '160425144950-850d8d839fd54d79a529ab986183e74a', 'title': 'California Style', 'description': 'May 2016', 'dataconfigId': '6936490/35154662'},
