@@ -11,6 +11,8 @@
 	<a href="/" class="alignleft hilite">all issues</a>
 	<span class="alignright">{{result['title']}}&nbsp;&nbsp;|&nbsp;&nbsp;{{result['description']}}</span>
 	<br>
+	<br>
+	<br>
 	<div data-configid="{{result['dataconfigId']}}" style="width: 800px; height: 685px;" class="issuuembed aligncenter"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
 {% endblock %}
 
