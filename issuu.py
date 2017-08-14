@@ -8,12 +8,11 @@ import sys
 import upload
 import ast
 
-
 from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
-version = '0.7.140'
+version = '0.7.142'
 
 app = Flask(__name__)
 
@@ -30,6 +29,8 @@ startIndex = 0
 
 
 embeds = {
+'142': {'documentId': '170814153546-f84bbfd7c905413dadf962207cf3b57b', 'title': 'C Home', 'description': 'Fall 2017', 'dataconfigId': '6936490/52153602'},
+'141': {'documentId': '170814153315-45733919cf19401c9e866c1ffc938983', 'title': 'California Style', 'description': 'September 2017', 'dataconfigId': '6936490/52153556'},
 '140': {'documentId': '170618212558-e999da217d414de78ed254b5335dcee6', 'title': 'C Weddings', 'description': 'Fall 2017', 'dataconfigId': '6936490/50288421'},
 '139': {'documentId': '170522050736-3d77a2423f4a4ae9b6cbfdfdc2220910', 'title': 'California Style', 'description': 'Summer 2017', 'dataconfigId': '6936490/49141440'},
 '138': {'documentId': '170416192611-f0fa089ee60c48d0a652604d5a6868ae', 'title': 'California Style', 'description': 'May 2017', 'dataconfigId': '6936490/47380061'},
@@ -189,7 +190,7 @@ def give_issuu():
 @app.route('/digital', methods=['GET'])
 def go_stats():
     return render_template('digital.tpl', version = version)
-    
+
 @app.route('/<name>', methods=['GET'])
 def find_issuu(name):
     if name in embeds:
@@ -197,7 +198,7 @@ def find_issuu(name):
         print result
         return render_template('doc.tpl', result = result, version = version)
     else:
-        return redirect(url_for('on_issuu_get'))   
+        return redirect(url_for('on_issuu_get'))
 
 @app.route('/embed', methods=['POST'])
 def post_embed():
@@ -207,7 +208,7 @@ def post_embed():
     readerStartPage = 0
     width = 400
     height = 300
-    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title 
+    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
     signature = hashlib.md5(sig_query).hexdigest()
     post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
     r = requests.post(issuu_url, data=post_data, files={'file':f})
@@ -235,7 +236,7 @@ def upload_issuu():
     file = request.files['file']
     commentsAllowed = 'false'
     f = upload.upload_file(file)
-    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title 
+    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
     signature = hashlib.md5(sig_query).hexdigest()
     post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
     r = requests.post(issuu_url, data=post_data, files={'file':f})
