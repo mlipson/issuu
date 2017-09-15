@@ -11,6 +11,7 @@
 		<title>C California Style</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
+		<meta name="robots" content="noindex">
 
 		<!-- Mobile Specific Metas
 	  ================================================== -->

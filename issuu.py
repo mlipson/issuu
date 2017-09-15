@@ -13,7 +13,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
 
-version = '0.7.142.1'
+version = '0.7.142.2'
 
 app = Flask(__name__)
 
