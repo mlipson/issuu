@@ -13,7 +13,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
 
-version = '0.7.142.2'
+version = '0.7.143'
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ startIndex = 0
 
 
 embeds = {
-# '143': {'documentId': '170910184237-4792283118104bdeaaf4fd90dff01ec9', 'title': 'California Style', 'description': 'October 2017', 'dataconfigId': '6936490/53040534'},
+'143': {'documentId': '170910184237-4792283118104bdeaaf4fd90dff01ec9', 'title': 'California Style', 'description': 'October 2017', 'dataconfigId': '6936490/53040534'},
 '142': {'documentId': '170814153546-f84bbfd7c905413dadf962207cf3b57b', 'title': 'C Home', 'description': 'Fall 2017', 'dataconfigId': '6936490/52153602'},
 '141': {'documentId': '170814153315-45733919cf19401c9e866c1ffc938983', 'title': 'California Style', 'description': 'September 2017', 'dataconfigId': '6936490/52153556'},
 '140': {'documentId': '170618212558-e999da217d414de78ed254b5335dcee6', 'title': 'C Weddings', 'description': 'Fall 2017', 'dataconfigId': '6936490/50288421'},
