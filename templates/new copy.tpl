@@ -65,13 +65,6 @@
 {% endblock %}
 
 {% block form_f %}
-<link href="https://api.motion.ai/sdk/webchat.css" rel="stylesheet" type="text/css">
-<script src="https://api.motion.ai/sdk/webchat.js"></script>
-<script>
-   motionAI_Init('85259?color=3588eb&sendBtn=SEND&inputBox=Type%20something...&token=bab0fb066277f15cff8b8eddf76b862d',true,400,470,'https://api.motion.ai/sdk/botbtn.png');
-   /* You may also invoke motionAI_Open() to manually open the modal. */
-</script>
-
 {% endblock %}
 
 {% block footer %}
