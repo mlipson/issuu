@@ -12,13 +12,13 @@ from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
-
-version = '0.7.144.b'
+version = '0.7.145.b'
 
 app = Flask(__name__)
 
-issuu_key = '78q00uqse2jueeyzcl7cx2kqrs8606yt'
-issuu_secret = 'hn9sbouwe1ljmj7pwmkvkal08joq0ebq'
+issuu_key = os.environ.get('ISSUU_KEY')
+issuu_secret = os.environ.get('ISSUU_SECRET')
+
 access = 'public'
 documentSortBy = 'publishDate'
 documentStates = 'A'
@@ -30,6 +30,7 @@ startIndex = 0
 
 
 embeds = {
+'145': {'documentId': '171022191512-f18b8e8783ea458bbf940eddd08779f2', 'title': 'California Style', 'description': 'November 2017', 'dataconfigId': '6936490/54522122'},
 '144': {'documentId': '171001194232-a7d1fb5503ba4a5890ea11080783fc68', 'title': 'C for Men', 'description': 'Fall 2017', 'dataconfigId': '6936490/53865923'},
 '143': {'documentId': '170910184237-4792283118104bdeaaf4fd90dff01ec9', 'title': 'California Style', 'description': 'October 2017', 'dataconfigId': '6936490/53040534'},
 '142': {'documentId': '170814153546-f84bbfd7c905413dadf962207cf3b57b', 'title': 'C Home', 'description': 'Fall 2017', 'dataconfigId': '6936490/52153602'},
