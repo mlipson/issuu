@@ -8,11 +8,12 @@ import sys
 import upload
 import ast
 
+
 from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
-version = '0.7.145'
+version = '0.7.146'
 
 app = Flask(__name__)
 
@@ -30,6 +31,7 @@ startIndex = 0
 
 
 embeds = {
+'146': {'documentId': '171119212358-def73d5175e647cbabaaa7ac47726939', 'title': 'California Style', 'description': 'Winter 2017', 'dataconfigId': '6936490/55527501'},
 '145': {'documentId': '171022191512-f18b8e8783ea458bbf940eddd08779f2', 'title': 'California Style', 'description': 'November 2017', 'dataconfigId': '6936490/54522122'},
 '144': {'documentId': '171001194232-a7d1fb5503ba4a5890ea11080783fc68', 'title': 'C for Men', 'description': 'Fall 2017', 'dataconfigId': '6936490/53865923'},
 '143': {'documentId': '170910184237-4792283118104bdeaaf4fd90dff01ec9', 'title': 'California Style', 'description': 'October 2017', 'dataconfigId': '6936490/53040534'},
