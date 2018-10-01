@@ -73,7 +73,7 @@ embeds = {
 '116': {'documentId': '151005164511-16a4c7a2e7b34a2d92ccec4926237c67', 'title': 'C for Men', 'description': 'Fall 2015', 'dataconfigId': '6936490/30507842'},
 '115': {'documentId': '150923064257-28d21bcbe4234551b1181c84a39f9617', 'title': 'C California Style', 'description': 'October 2015', 'dataconfigId': '6936490/30238976'},
 '114': {'documentId': '150824071940-10eaa5ec1a8a4a95a891adc4b0897f1d', 'title': 'C Home', 'description': 'Fall 2015', 'dataconfigId': '6936490/14964408'},
-'113_n': {'documentId': '150824071805-243f175dd52a4cd9bce14f5469dc3c60', 'title': 'C California Style', 'description': 'September 2015', 'dataconfigId': '6936490/14964559'},
+'113': {'documentId': '181001193433-4b2f6d57a2a84b30a2a7a9efb33e34cb', 'title': 'C California Style', 'description': 'September 2015', 'dataconfigId': '6936490/64866448'},
 '112': {'documentId': '150629174131-60f8d55e351b43e2ab0634c60793a024', 'title': 'C Weddings', 'description': 'Fall 2015', 'dataconfigId': '6936490/13844801'},
 '111': {'documentId': '150601154552-2a723187665d43c09b5775b97866a9a7', 'title': 'C California Style', 'description': 'Summer 2015', 'dataconfigId': '6936490/13245988'},
 '110': {'documentId': '150428160452-cce3a58f5f4c4d089b84e42dfd768a47', 'title': 'C California Style', 'description': 'May 2015', 'dataconfigId': '6936490/12542444'},
