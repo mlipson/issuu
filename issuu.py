@@ -13,7 +13,7 @@ from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 
-version = '0.7.154'
+version = '0.7.155'
 
 app = Flask(__name__)
 
@@ -31,6 +31,7 @@ startIndex = 0
 
 
 embeds = {
+'155': {'documentId': '181001155121-2ba42cbd4d9148d0a9fbb3e39c313349', 'title': 'C California Style', 'description': 'October 2018', 'dataconfigId': '6936490/64861961'},
 '154': {'documentId': '180813040312-4e8c93238ef64ec69d5d5d7445d7c98d', 'title': 'C California Style', 'description': 'September 2018', 'dataconfigId': '6936490/63780612'},
 '153': {'documentId': '180624203140-669a6ed7f08840fb8b3dea246a2667de', 'title': 'C Weddings', 'description': 'Fall 2018', 'dataconfigId': '6936490/62659793'},
 '152': {'documentId': '180529052225-6528539c7c8f43a0b157f78f41df3f6a', 'title': 'C California Style', 'description': 'Summer 2018', 'dataconfigId': '6936490/61812016'},
