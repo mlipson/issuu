@@ -15,7 +15,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from embed import embeds
 
 
-version = '0.7.158'
+version = '0.7.159'
 
 app = Flask(__name__)
 
