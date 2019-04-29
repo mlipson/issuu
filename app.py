@@ -1,6 +1,6 @@
 import os
 import hashlib
-import urllib
+import urllib.request
 import urllib2
 import requests
 import json
@@ -14,7 +14,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 from embed import embeds
 
-version = '0.7.163'
+version = '0.7.162'
 
 
 app = Flask(__name__)
@@ -52,7 +52,7 @@ def go_stats():
 def find_issuu(name):
     if name in embeds:
         result = embeds[name]
-        print result
+        print(result)
         return render_template('doc.tpl', result = result, version = version)
     else:
         return redirect(url_for('on_issuu_get'))
@@ -70,10 +70,10 @@ def post_embed():
     post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
     r = requests.post(issuu_url, data=post_data, files={'file':f})
     message = str(r.text)
-    print r.headers
-    print r.text
-    print r.status_code
-    print message
+    print(r.headers)
+    print(r.text)
+    print(r.status_code)
+    print(message)
     upload.delete_file(file)
     return render_template('ok.tpl', message = message, version = version)
 
@@ -85,7 +85,7 @@ def upload_issuu():
     if btn == 'Cancel':
         return redirect(url_for('on_issuu_get'))
     name = request.form['name']
-    print name
+    print(name)
     title = request.form['title']
     description = request.form['description']
     publishDate = request.form['publishDate']
@@ -94,14 +94,14 @@ def upload_issuu():
     commentsAllowed = 'false'
     f = upload.upload_file(file)
     sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
-    signature = hashlib.md5(sig_query).hexdigest()
+    signature = hashlib.md5(sig_query.encode("utf-8")).hexdigest()
     post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
     r = requests.post(issuu_url, data=post_data, files={'file':f})
     message = str(r.text)
-    print r.headers
-    print r.text
-    print r.status_code
-    print message
+    print(r.headers)
+    print(r.text)
+    print(r.status_code)
+    print(message)
     upload.delete_file(file)
     return render_template('ok.tpl', message = message, version = version)
 
@@ -113,9 +113,10 @@ def get_issuu():
     result = []
     sig_query = issuu_secret + 'action' + action + 'apiKey' + issuu_key + 'documentSortBy' + documentSortBy + 'documentStates' + documentStates + 'format' + format + 'orgDocTypes' + orgDocTypes + 'pageSize' + str(pageSize) + 'responseParams' + responseParams + 'resultOrder' + resultOrder + 'startIndex' + str(startIndex)
     req_query = 'action' + '=' + action + '&' + 'apiKey' + '=' + issuu_key + '&' + 'documentSortBy' + '=' + documentSortBy + '&' + 'documentStates' + '=' + documentStates + '&' + 'format' + '=' + format + '&' + 'orgDocTypes' + '=' + orgDocTypes + '&' + 'pageSize' + '=' + str(pageSize) + '&' + 'responseParams' + '=' + responseParams + '&' + 'resultOrder' + '=' + resultOrder + '&' + 'startIndex' + '=' + str(startIndex)
-    signature = hashlib.md5(sig_query).hexdigest()
+    signature = hashlib.md5(sig_query.encode("utf-8")).hexdigest()
     query = issuu_url + req_query + '&' + 'signature' + '=' + signature
-    response = urllib2.urlopen(query)
+    # response = urllib2.urlopen(query)
+    response = urllib.request.urlopen(query)
     response = json.loads(response.read())
     i = response['rsp']['_content']['result']['_content']
     for doc in i:
@@ -123,7 +124,7 @@ def get_issuu():
             doc['document']['description'] = doc['document']['title']
         if not doc['document']['description'][0] == '*':
             result.append({'description': doc['document']['description'], 'documentId': doc['document']['documentId'], 'name': doc['document']['name'], 'title': doc['document']['title']})
-    # print result
+    print(result)
     return result
 
 def get_embed(documentId):
@@ -137,7 +138,8 @@ def get_embed(documentId):
     req_query = 'action' + '=' + action + '&' + 'apiKey' + '=' + issuu_key + '&' + 'documentId' + '=' + documentId + '&' + 'embedSortBy' + '=' + embedSortBy + '&'  + 'format' + '=' + format + '&' +  'pageSize' + '=' + str(pageSize) + '&' + 'responseParams' + '=' + responseParams + '&' + 'resultOrder' + '=' + resultOrder + '&' + 'startIndex' + '=' + str(startIndex)
     signature = hashlib.md5(sig_query).hexdigest()
     query = issuu_url + req_query + '&' + 'signature' + '=' + signature
-    response = urllib2.urlopen(query)
+    # response = urllib2.urlopen(query)
+    response = urllib.request.urlopen(query)
     response = json.loads(response.read())
     result = response['rsp']['_content']['result']['_content'][0]['documentEmbed']['dataConfigId']
     return result
