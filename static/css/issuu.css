@@ -5,7 +5,7 @@
 		list-style: none;
 		text-align: center;
 		}
-		
+
 	.grid1 li	{
 		display: inline-block;
 		width: 255px;
@@ -13,7 +13,7 @@
 		padding: 20px;
 		position: relative;
         }
-        
+
 	.grid2 {
 		padding: 20px 20px 20px 20px;
 		max-width: 1300px;
@@ -23,7 +23,7 @@
         overflow:auto;
 		height:600px;
 		}
-		
+
 	.grid2 li	{
 		display: inline-block;
 		margin: 0;
@@ -35,6 +35,11 @@
 		line-height: 1.25;
 		font-size: 18px;
 		padding-top: 30px;
+		}
+
+	.c_style {
+			color: #EAC2CF;
+			font-weight: 500;
 		}
 
 	.footer {

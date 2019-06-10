@@ -27,7 +27,7 @@
 
 	</head>
 
-	<header>
+	<header >
 		<div class="container">
 			<div class="sixteen columns top_nav grid1">
 				{% block top_nav %}

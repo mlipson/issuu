@@ -2,10 +2,11 @@
 
 {% set post = "/new" %}
 
-{{% block top_nav %}
+{% block top_nav %}
 	<h2><a href="/">
 		<!-- <img src="http://magazinec.com/wp-content/themes/cpub_landing/img/logo-ccalistyle.svg"> -->
-		C California Style & Culture
+		<span class="c_style">C</span>
+		California Style & Culture
 	</a>
 </h2>
 {% endblock %}

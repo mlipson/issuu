@@ -2,7 +2,7 @@
 
 {% block top_nav %}
 	<h2><a href="/">
-		<!-- <img src="http://magazinec.com/wp-content/themes/cpub_landing/img/logo-ccalistyle.svg"> -->
+		<!-- <img src="https://magazinec.com/wp-content/uploads/2019/05/SecondaryLogo-White-small.png" height="100"> -->
 		C California Style & Culture
 	</a>
 </h2>
