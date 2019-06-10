@@ -23,12 +23,13 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skeleton.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/issuu.css') }}">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 	</head>
 
 	<header>
 		<div class="container">
-			<div class="sixteen columns top_nav grid1">	
+			<div class="sixteen columns top_nav grid1">
 				{% block top_nav %}
 				{% endblock %}
 			</div>
@@ -38,7 +39,7 @@
 	<body>
 		<hr>
 		<div class="container">
-			<div class="sixteen columns {{style}}">	
+			<div class="sixteen columns {{style}}">
 				{% block content %}
 				{% endblock %}
 			</div>
@@ -57,6 +58,6 @@
 			</div>
 		</div>
 	</footer>
-	
+
 
 </html>
