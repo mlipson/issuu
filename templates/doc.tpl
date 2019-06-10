@@ -1,11 +1,10 @@
 {% extends "base_2.tpl" %}
 
 {% block top_nav %}
-	<h2><a href="/">
-		<!-- <img src="https://magazinec.com/wp-content/uploads/2019/05/SecondaryLogo-White-small.png" height="100"> -->
-		C California Style & Culture
+	<a href="/">
+		<img src="https://magazinec.com/wp-content/uploads/2019/04/CLogo_Web.svg" height=75>
+		<span class="c_style">California Style & Culture</span>
 	</a>
-</h2>
 {% endblock %}
 
 {% block mode %}

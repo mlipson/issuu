@@ -24,6 +24,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skeleton.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/issuu.css') }}">
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+		<link href="https://p.typekit.net/p.css?s=1&k=gow0agp&ht=tk&f=6781.6782.6785.6788.10881.10882.10884.10885.10954.13453.13454.13455.13458.13464.13465.13468.13472.13473.19416.19420.25657.25658.25659.25660.25670.25671.25672.25673.32874.32875.39283.39292.41781.41782.41787.41788.41793.41794.41795.41796.41797.41798.41799.41800&a=14419530&app=typekit&e=css" rel="stylesheet">
+
+
 
 	</head>
 
