@@ -2,7 +2,7 @@
 
 {% set post = "/new" %}
 
-{{% block top_nav %}
+{% block top_nav %}
 	<a href="/">
 		<img src="https://magazinec.com/wp-content/uploads/2019/04/CLogo_Web.svg" height=75>
 		<span class="c_style">California Style & Culture</span>

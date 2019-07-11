@@ -14,7 +14,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 from embed import embeds
 
-version = '0.7.164 r1'
+version = '0.7.165'
 
 
 app = Flask(__name__)
@@ -53,7 +53,7 @@ def find_issuu(name):
     if name in embeds:
         result = embeds[name]
         print result
-        return render_template('doc.tpl', result = result, version = version)
+        return render_template('doc.tpl', result = result, name = name, version = version)
     else:
         return redirect(url_for('on_issuu_get'))
 

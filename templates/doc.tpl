@@ -16,7 +16,15 @@
 	<br>
 	<br>
 	<br>
-	<div data-configid="{{result['dataconfigId']}}" style="width: 800px; height: 685px;" class="issuuembed aligncenter"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
+	<!-- <div data-configid="{{result['dataconfigId']}}" style="width: 800px; height: 685px;" class="issuuembed aligncenter"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script> -->
+	<iframe allowfullscreen allow="fullscreen"
+		style="border:none;width:100%;height:730px;"
+		src="//e.issuu.com/embed.html?d={{ name }}
+			&hideIssuuLogo=true
+			&hideShareButton=true
+			&u=cdigital
+			&backgroundColor=%23f7f7f7">
+	</iframe>
 {% endblock %}
 
 {% block footer %}
@@ -24,5 +32,5 @@
 {% endblock %}
 
 {% block script %}
-	<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
+	<!-- <script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script> -->
 {% endblock %}
