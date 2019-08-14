@@ -1,5 +1,6 @@
 
 embeds = {
+'166': {'documentId': '190814225652-bc30dc5e879180f7284fe63520d3d316', 'title': 'C California Style & Culture', 'description': 'September 2019', 'dataconfigId': '6936490/67231417'},
 '165': {'documentId': '190709153833-ecece7b999db98ef221c6c1b4a4d53e1', 'title': 'C Weddings', 'description': 'Fall 2019', 'dataconfigId': '6936490/67231417'},
 '164': {'documentId': '190610065444-cb312ebe3aef4dbbaa790b74e4b89233', 'title': 'C California Style & Culture', 'description': 'Summer 2019', 'dataconfigId': '6936490/70482254'},
 '163': {'documentId': '190429051958-79e7d359019d4aca9e00575dfc443917', 'title': 'C California Style & Culture', 'description': 'May 2019', 'dataconfigId': '6936490/69453355'},
