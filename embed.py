@@ -1,5 +1,6 @@
 
 embeds = {
+'170': {'documentId': '191121172741-6173abe8850b48e85c2d21bb5d21eb0f', 'title': 'C California Style & Culture', 'description': 'Winter 2019/20', 'dataconfigId': '6936490/67231417'},
 '169': {'documentId': '191024183133-981f3eab4d71ab2b96dfbbf49c862579', 'title': 'C California Style & Culture', 'description': 'November 2019', 'dataconfigId': '6936490/67231417'},
 '168': {'documentId': '191010171239-055e63e04eb62cb50987efed7d8afd03', 'title': 'C Men\'s Edition', 'description': 'Fall 2019', 'dataconfigId': '6936490/67231417'},
 '167': {'documentId': '190925053719-32ff8d3afa3a6dcb7b2bbafed7f34b24', 'title': 'C California Style & Culture', 'description': 'October 2019', 'dataconfigId': '6936490/67231417'},
