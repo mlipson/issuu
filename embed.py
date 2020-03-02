@@ -1,5 +1,6 @@
 
 embeds = {
+'172': {'documentId': '200302232617-69c67906836d3f66e5efc6c3b5a9e96e', 'title': 'C California Style & Culture', 'description': 'Spring 2020', 'dataconfigId': '6936490/67231417'},
 '171': {'documentId': '200203173650-eff634302fe91467b77b26bae2ed920b', 'title': 'C California Style & Culture', 'description': 'Spring Fashion | March 2020', 'dataconfigId': '6936490/67231417'},
 '170': {'documentId': '191121172741-6173abe8850b48e85c2d21bb5d21eb0f', 'title': 'C California Style & Culture', 'description': 'Winter 2019/20', 'dataconfigId': '6936490/67231417'},
 '169': {'documentId': '191024183133-981f3eab4d71ab2b96dfbbf49c862579', 'title': 'C California Style & Culture', 'description': 'November 2019', 'dataconfigId': '6936490/67231417'},

@@ -9,12 +9,12 @@ import upload
 import ast
 
 
-from werkzeug import secure_filename
+# from werkzeug import secure_filename
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack, make_response, send_from_directory
 from embed import embeds
 
-version = '0.7.171'
+version = '0.7.172'
 
 
 app = Flask(__name__)
@@ -61,10 +61,20 @@ def find_issuu(name):
 def post_embed():
     action = 'issuu.document_embed.add'
     issuu_url = 'http://api.issuu.com/1_0'
-    documentId = '140702225753-ee2087e9ac60465babc876065483da86'
-    readerStartPage = 0
-    width = 400
-    height = 300
+    
+    # documentId = '140702225753-ee2087e9ac60465babc876065483da86'
+    # readerStartPage = 0
+    # width = 400
+    # height = 300
+
+    name = request.form['name']
+    title = request.form['title']
+    description = request.form['description']
+    publishDate = request.form['publishDate']
+    access = request.form['access']
+    commentsAllowed = 'false'
+    f = upload.upload_file(file)
+
     sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
     signature = hashlib.md5(sig_query).hexdigest()
     post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
@@ -131,7 +141,6 @@ def get_embed(documentId):
     action = 'issuu.document_embeds.list'
     responseParams = 'dataConfigId,documentId'
     embedSortBy = 'documentId'
-    i = []
     result = []
     sig_query = issuu_secret + 'action' + action + 'apiKey' + issuu_key + 'documentId' + documentId + 'embedSortBy' + embedSortBy + 'format' + format + 'pageSize' + str(pageSize) + 'responseParams' + responseParams + 'resultOrder' + resultOrder + 'startIndex' + str(startIndex)
     req_query = 'action' + '=' + action + '&' + 'apiKey' + '=' + issuu_key + '&' + 'documentId' + '=' + documentId + '&' + 'embedSortBy' + '=' + embedSortBy + '&'  + 'format' + '=' + format + '&' +  'pageSize' + '=' + str(pageSize) + '&' + 'responseParams' + '=' + responseParams + '&' + 'resultOrder' + '=' + resultOrder + '&' + 'startIndex' + '=' + str(startIndex)
