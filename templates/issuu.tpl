@@ -24,5 +24,5 @@
 {% endblock %}
 
 {% block footer %}
-    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2019 C Publishing, LLC
+    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2020 C Publishing, LLC
 {% endblock %}
