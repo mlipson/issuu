@@ -5,9 +5,8 @@ import os
 
 
 from flask import Flask, request, redirect, url_for
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from flask import send_from_directory
-from urllib2 import urlopen
 
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = set(['pdf'])
@@ -23,7 +22,7 @@ def upload_file(file):
     if file and allowed_file(file.filename):
         file_name = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        result = open((os.path.join(app.config['UPLOAD_FOLDER'], file_name)))
+        result = open((os.path.join(app.config['UPLOAD_FOLDER'], file_name)), 'rb')
         return result
 
 def upload_p(file):

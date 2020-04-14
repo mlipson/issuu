@@ -8,7 +8,7 @@
 			<!-- Basic Page Needs
 	  ================================================== -->
 		<meta charset="utf-8">
-		<title>C California Style</title>
+		<title>C California Style & Culture</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="robots" content="noindex">

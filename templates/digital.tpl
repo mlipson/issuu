@@ -34,5 +34,4 @@
 {% endblock %}
 
 {% block script %}
-	</script>
 {% endblock %}

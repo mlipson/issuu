@@ -1,1 +1,1 @@
-web: python issuu.py
+web: python app.py

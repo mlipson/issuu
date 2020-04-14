@@ -1,156 +1,157 @@
 import os
 import hashlib
-import urllib.request
-import urllib2
 import requests
 import json
 import sys
-import upload
-import ast
 
+from flask import Flask, request, redirect, url_for, render_template
+from upload import upload_file, delete_file
 
-from werkzeug import secure_filename
-from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash, _app_ctx_stack, make_response, send_from_directory
-from embed import embeds
-
-version = '0.7.162'
+version = '0.8.173'
 
 
 app = Flask(__name__)
 
 issuu_key = os.environ.get('ISSUU_KEY')
 issuu_secret = os.environ.get('ISSUU_SECRET')
+# http = urllib3.PoolManager()
 
 access = 'public'
 documentSortBy = 'publishDate'
 documentStates = 'A'
-format = 'json'
+docFormat = 'json'
 orgDocTypes = 'pdf,doc'
 pageSize = 100
 resultOrder = 'desc'
 startIndex = 0
 
+names = [str(i) for i in range(200)]
 
 # test of issuu request
 @app.route('/', methods=['GET'])
-@app.route('/issuu', methods=['GET'])
-def on_issuu_get():
-    issues = get_issuu()
-    result = set_flag(issues)
-    return render_template('issuu.tpl', result = result, version = version)
+def get_issuu():
+# ==========================================
+    result = list_docs()
+    return render_template('issuu.tpl', result=result, version=version)
+
 
 @app.route('/new', methods=['GET'])
-def give_issuu():
-    return render_template('new.tpl', version = version)
+def new_issuu():
+# ==========================================
+    return render_template('new.tpl', version=version)
+
 
 @app.route('/digital', methods=['GET'])
-def go_stats():
-    return render_template('digital.tpl', version = version)
+def get_stats():
+# ==========================================
+    return render_template('digital.tpl', version=version)
+
 
 @app.route('/<name>', methods=['GET'])
 def find_issuu(name):
-    if name in embeds:
-        result = embeds[name]
-        print(result)
-        return render_template('doc.tpl', result = result, version = version)
-    else:
-        return redirect(url_for('on_issuu_get'))
+# ==========================================
+    if name in names:
+        result = list_docs()
+        if result != []:
+            result = next((i for i in result if i['name'] == name), None)
+            return render_template('doc.tpl', result=result, version=version)
 
-@app.route('/embed', methods=['POST'])
-def post_embed():
-    action = 'issuu.document_embed.add'
-    issuu_url = 'http://api.issuu.com/1_0'
-    documentId = '140702225753-ee2087e9ac60465babc876065483da86'
-    readerStartPage = 0
-    width = 400
-    height = 300
-    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
-    signature = hashlib.md5(sig_query).hexdigest()
-    post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
-    r = requests.post(issuu_url, data=post_data, files={'file':f})
-    message = str(r.text)
-    print(r.headers)
-    print(r.text)
-    print(r.status_code)
-    print(message)
-    upload.delete_file(file)
-    return render_template('ok.tpl', message = message, version = version)
+    return redirect(url_for('get_issuu'))
+
 
 @app.route('/upload', methods=['POST'])
-def upload_issuu():
-    action = 'issuu.document.upload'
+def post_issuu():
+# ==========================================
     issuu_url = 'http://upload.issuu.com/1_0'
-    btn = request.form['btn']
-    if btn == 'Cancel':
-        return redirect(url_for('on_issuu_get'))
-    name = request.form['name']
-    print(name)
-    title = request.form['title']
-    description = request.form['description']
-    publishDate = request.form['publishDate']
     access = request.form['access']
-    file = request.files['file']
+    action = 'issuu.document.upload'
     commentsAllowed = 'false'
-    f = upload.upload_file(file)
-    sig_query = issuu_secret + 'access' + access + 'action' + action + 'apiKey' + issuu_key + 'commentsAllowed' + commentsAllowed + 'description' + description + 'name' + name + 'publishDate' + publishDate + 'title' + title
+    description = request.form['description']
+    name = request.form['name']
+    publishDate = request.form['publishDate']
+    title = request.form['title']
+    btn = request.form['btn']
+
+    if btn == 'Cancel':
+        return redirect(url_for('get_issuu'))
+
+    file = request.files['file']
+    f = upload_file(file)
+
+    sig_query = '{}access{}action{}apiKey{}commentsAllowed{}description{}name{}publishDate{}title{}'.format(
+        issuu_secret, access, action, issuu_key, commentsAllowed, description, name, publishDate, title)
+        
     signature = hashlib.md5(sig_query.encode("utf-8")).hexdigest()
-    post_data = {'signature':signature, 'access':access, 'action':action, 'apiKey':issuu_key, 'commentsAllowed':commentsAllowed, 'description':description, 'name':name, 'publishDate':publishDate, 'title':title}
-    r = requests.post(issuu_url, data=post_data, files={'file':f})
+
+    data = {
+        'signature': signature,
+        'access': access,
+        'action': action,
+        'apiKey': issuu_key,
+        'commentsAllowed': commentsAllowed,
+        'description': description,
+        'name': name,
+        'publishDate': publishDate,
+        'title':title
+        }
+    
+    r = requests.post(issuu_url, data=data, files={'file':f})
     message = str(r.text)
+
     print(r.headers)
     print(r.text)
     print(r.status_code)
     print(message)
-    upload.delete_file(file)
-    return render_template('ok.tpl', message = message, version = version)
 
-def get_issuu():
-    issuu_url = 'http://api.issuu.com/1_0?'
+    delete_file(file)
+    return render_template('ok.tpl', message=message, version=version)
+
+
+def list_docs():
+# ==========================================
+    issuu_url = 'http://api.issuu.com/1_0'
     action = 'issuu.documents.list'
     responseParams='name,documentId,title,description,publishDate'
-    i = []
-    result = []
-    sig_query = issuu_secret + 'action' + action + 'apiKey' + issuu_key + 'documentSortBy' + documentSortBy + 'documentStates' + documentStates + 'format' + format + 'orgDocTypes' + orgDocTypes + 'pageSize' + str(pageSize) + 'responseParams' + responseParams + 'resultOrder' + resultOrder + 'startIndex' + str(startIndex)
-    req_query = 'action' + '=' + action + '&' + 'apiKey' + '=' + issuu_key + '&' + 'documentSortBy' + '=' + documentSortBy + '&' + 'documentStates' + '=' + documentStates + '&' + 'format' + '=' + format + '&' + 'orgDocTypes' + '=' + orgDocTypes + '&' + 'pageSize' + '=' + str(pageSize) + '&' + 'responseParams' + '=' + responseParams + '&' + 'resultOrder' + '=' + resultOrder + '&' + 'startIndex' + '=' + str(startIndex)
+
+    sig_query = '{}action{}apiKey{}documentSortBy{}documentStates{}format{}orgDocTypes{}pageSize{}responseParams{}resultOrder{}startIndex{}'.format(
+            issuu_secret, action, issuu_key, documentSortBy, documentStates, docFormat, orgDocTypes, str(pageSize), responseParams, resultOrder, str(startIndex))
+
     signature = hashlib.md5(sig_query.encode("utf-8")).hexdigest()
-    query = issuu_url + req_query + '&' + 'signature' + '=' + signature
-    # response = urllib2.urlopen(query)
-    response = urllib.request.urlopen(query)
-    response = json.loads(response.read())
-    i = response['rsp']['_content']['result']['_content']
-    for doc in i:
-        if not 'description' in list(doc['document']):
-            doc['document']['description'] = doc['document']['title']
-        if not doc['document']['description'][0] == '*':
-            result.append({'description': doc['document']['description'], 'documentId': doc['document']['documentId'], 'name': doc['document']['name'], 'title': doc['document']['title']})
-    print(result)
+
+    data = {
+        'action': action,
+        'apiKey': issuu_key,
+        'documentSortBy': documentSortBy,
+        'documentStates': documentStates,
+        'format': docFormat,
+        'orgDocTypes': orgDocTypes,
+        'pageSize': str(pageSize),
+        'responseParams': responseParams,
+        'resultOrder': resultOrder,
+        'startIndex': str(startIndex),
+        'signature': signature,
+        }
+
+    try:
+        response = requests.get('http://api.issuu.com/1_0', data)
+        response = response.json()['rsp']['_content']['result']['_content']
+    except:
+        response = None
+
+    result = []
+
+    if response:
+        for i in response:
+            if i['document']['name'] in names:
+                result.append({
+                    'name': i['document']['name'],
+                    'documentId': i['document']['documentId'],
+                    'title': i['document']['title'],
+                    'description': i['document']['description']          
+                    })
+
     return result
 
-def get_embed(documentId):
-    issuu_url = 'http://api.issuu.com/1_0?'
-    action = 'issuu.document_embeds.list'
-    responseParams = 'dataConfigId,documentId'
-    embedSortBy = 'documentId'
-    i = []
-    result = []
-    sig_query = issuu_secret + 'action' + action + 'apiKey' + issuu_key + 'documentId' + documentId + 'embedSortBy' + embedSortBy + 'format' + format + 'pageSize' + str(pageSize) + 'responseParams' + responseParams + 'resultOrder' + resultOrder + 'startIndex' + str(startIndex)
-    req_query = 'action' + '=' + action + '&' + 'apiKey' + '=' + issuu_key + '&' + 'documentId' + '=' + documentId + '&' + 'embedSortBy' + '=' + embedSortBy + '&'  + 'format' + '=' + format + '&' +  'pageSize' + '=' + str(pageSize) + '&' + 'responseParams' + '=' + responseParams + '&' + 'resultOrder' + '=' + resultOrder + '&' + 'startIndex' + '=' + str(startIndex)
-    signature = hashlib.md5(sig_query).hexdigest()
-    query = issuu_url + req_query + '&' + 'signature' + '=' + signature
-    # response = urllib2.urlopen(query)
-    response = urllib.request.urlopen(query)
-    response = json.loads(response.read())
-    result = response['rsp']['_content']['result']['_content'][0]['documentEmbed']['dataConfigId']
-    return result
-
-def set_flag(issues):
-    result = []
-    for i in issues:
-        if i['name'] in embeds:
-            i['dataconfigId'] = embeds[(i['name'])]['dataconfigId']
-            result.append(i)
-    return result
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 17939))
