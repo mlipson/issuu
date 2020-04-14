@@ -78,7 +78,7 @@
 {% endblock %}
 
 {% block footer %}
-    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2018 C Publishing, LLC
+    {{version}}&nbsp;&nbsp;|&nbsp;&nbsp;2020 C Publishing, LLC
 {% endblock %}
 
 {% block script %}
@@ -87,18 +87,18 @@
 		{
 			field: document.getElementById('datepicker1'),
 			firstDay: 1,
-			minDate: new Date('2000-01-01'),
-			maxDate: new Date('2020-12-31'),
-			yearRange: [2000,2020],
+			minDate: new Date('2019-01-01'),
+			maxDate: new Date('2025-12-31'),
+			yearRange: [2019,2025],
 			format: 'YYYY-MM-DD',
 			});
 		var picker2 = new Pikaday(
 		{
 			field: document.getElementById('datepicker2'),
 			firstDay: 1,
-			minDate: new Date('2000-01-01'),
-			maxDate: new Date('2020-12-31'),
-			yearRange: [2000,2020],
+			minDate: new Date('2019-01-01'),
+			maxDate: new Date('2025-12-31'),
+			yearRange: [2019,2025],
 			format: 'YYYY-MM-DD',
 		});
 	</script>

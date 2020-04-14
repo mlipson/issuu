@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 issuu_key = os.environ.get('ISSUU_KEY')
 issuu_secret = os.environ.get('ISSUU_SECRET')
-# http = urllib3.PoolManager()
 
 access = 'public'
 documentSortBy = 'publishDate'
