@@ -9,7 +9,6 @@ from upload import upload_file, delete_file
 
 version = '0.8.173'
 
-
 app = Flask(__name__)
 
 issuu_key = os.environ.get('ISSUU_KEY')
@@ -34,18 +33,6 @@ def get_issuu():
     return render_template('issuu.tpl', result=result, version=version)
 
 
-@app.route('/new', methods=['GET'])
-def new_issuu():
-# ==========================================
-    return render_template('new.tpl', version=version)
-
-
-@app.route('/digital', methods=['GET'])
-def get_stats():
-# ==========================================
-    return render_template('digital.tpl', version=version)
-
-
 @app.route('/<name>', methods=['GET'])
 def find_issuu(name):
 # ==========================================
@@ -56,6 +43,12 @@ def find_issuu(name):
             return render_template('doc.tpl', result=result, version=version)
 
     return redirect(url_for('get_issuu'))
+
+
+@app.route('/new', methods=['GET'])
+def new_issuu():
+# ==========================================
+    return render_template('new.tpl', version=version)
 
 
 @app.route('/upload', methods=['POST'])
@@ -104,6 +97,12 @@ def post_issuu():
 
     delete_file(file)
     return render_template('ok.tpl', message=message, version=version)
+
+
+@app.route('/digital', methods=['GET'])
+def get_stats():
+# ==========================================
+    return render_template('digital.tpl', version=version)
 
 
 def list_docs():
